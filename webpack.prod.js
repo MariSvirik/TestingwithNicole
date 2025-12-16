@@ -11,7 +11,7 @@ export default merge(common('production'), {
   mode: 'production',
   devtool: 'source-map',
   output: {
-    publicPath: '/patternfly-react-seed-activation-keys/',
+    publicPath: '/TestingwithNicole/',
   },
   optimization: {
     minimizer: [
