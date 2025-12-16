@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import {
-    Page,
-    PageSection,
-    PageSectionVariants,
-    Title,
-    Text,
-    Backdrop,
-    Modal,
-    ModalVariant,
-    Button,
-    Checkbox,
-    Stack,
-    StackItem,
-    TextContent,
-    Form,
-    FormGroup,
     Alert,
     AlertVariant,
+    Backdrop,
+    Button,
+    Checkbox,
     Dropdown,
     DropdownItem,
     DropdownList,
+    Form,
+    FormGroup,
     MenuToggle,
+    Modal,
+    ModalVariant,
+    Page,
+    PageSection,
+    PageSectionVariants,
+    Stack,
+    StackItem,
+    Text,
+    TextContent,
+    Title,
 } from '@patternfly/react-core';
 
 export const MirrorRepository: React.FunctionComponent = () => {
@@ -65,7 +65,7 @@ export const MirrorRepository: React.FunctionComponent = () => {
             </PageSection>
 
             {/* Grey Overlay */}
-            <Backdrop open={true} />
+            <Backdrop open={isModalOpen} />
 
             {/* Modal */}
             <Modal
@@ -86,8 +86,9 @@ export const MirrorRepository: React.FunctionComponent = () => {
                     <StackItem>
                         <TextContent>
                             <Text component="p">
-                                This will mirror the selected repository into the specified product.
-                                The repository will be available for use within that product.
+                                Mirroring will import the remote flatpak repository <strong>rhel10/firefox-flatpak</strong> into a product.
+                                Details from the flatpak remote will automatically populate the repository fields.
+                                The repository will be available for syncing once it has been mirrored into a product.
                             </Text>
                         </TextContent>
                     </StackItem>

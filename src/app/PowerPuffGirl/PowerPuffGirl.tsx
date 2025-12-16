@@ -1,55 +1,54 @@
 import * as React from 'react';
 import {
-    PageSection,
-    Title,
-    Text,
-    Card,
-    CardBody,
-    Tabs,
-    Tab,
-    TabTitleText,
-    TabContent,
-    TabContentBody,
-    Toolbar,
-    ToolbarContent,
-    ToolbarItem,
-    ToolbarGroup,
-    TextInput,
-    Button,
-    MenuToggle,
-    Select,
-    SelectOption,
-    SelectList,
-    Checkbox,
-    Label,
-    Spinner,
-    EmptyState,
-    EmptyStateIcon,
-    EmptyStateBody,
-    Dropdown,
-    DropdownList,
-    DropdownItem,
     Alert,
     AlertActionCloseButton,
+    Button,
+    Card,
+    CardBody,
+    Checkbox,
+    Dropdown,
+    DropdownItem,
+    DropdownList,
+    EmptyState,
+    EmptyStateBody,
+    EmptyStateIcon,
+    MenuToggle,
+    PageSection,
+    Select,
+    SelectList,
+    SelectOption,
+    Spinner,
     Split,
     SplitItem,
-    Stack
+    Stack,
+    Tab,
+    TabContent,
+    TabContentBody,
+    TabTitleText,
+    Tabs,
+    Text,
+    TextInput,
+    Title,
+    Toolbar,
+    ToolbarContent,
+    ToolbarGroup,
+    ToolbarItem,
 } from '@patternfly/react-core';
 import {
     Table,
+    Tbody,
+    Td,
+    Th,
     Thead,
     Tr,
-    Th,
-    Tbody,
-    Td
 } from '@patternfly/react-table';
 import {
-    SearchIcon,
-    CheckCircleIcon,
     ArrowUpIcon,
+    CaretDownIcon,
+    CheckCircleIcon,
     CheckIcon,
     EllipsisVIcon,
-    CaretDownIcon
+    SearchIcon,
 } from '@patternfly/react-icons';
 import { useNavigate } from 'react-router-dom';
 
@@ -108,7 +107,7 @@ const PowerPuffGirl: React.FunctionComponent = () => {
     const [isBulkSelectDropdownOpen, setIsBulkSelectDropdownOpen] = React.useState(false);
     const [isActionsKebabOpen, setIsActionsKebabOpen] = React.useState(false);
     const [openRowKebabs, setOpenRowKebabs] = React.useState<Set<number>>(new Set());
-    const [isLoading, setIsLoading] = React.useState(false);
+    const [isLoading] = React.useState(false);
     const [showAlert, setShowAlert] = React.useState(true);
 
     const handlePrimaryTabClick = (event: React.MouseEvent | React.KeyboardEvent | MouseEvent, tabIndex: string | number) => {

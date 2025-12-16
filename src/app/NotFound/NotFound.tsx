@@ -5,7 +5,9 @@ import {
   EmptyState,
   EmptyStateBody,
   EmptyStateFooter,
+  EmptyStateIcon,
   PageSection,
+  Title,
 } from '@patternfly/react-core';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,13 +23,19 @@ const NotFound: React.FunctionComponent = () => {
   }
 
   return (
-    <PageSection hasBodyWrapper={false}>
-      <EmptyState titleText="404 Page not found" variant="full" icon={ExclamationTriangleIcon} >
+    <PageSection>
+      <EmptyState variant="full">
+        <EmptyStateIcon icon={ExclamationTriangleIcon} />
+        <Title headingLevel="h4" size="lg">
+          404 Page not found
+        </Title>
         <EmptyStateBody>
           We didn&apos;t find a page that matches the address you navigated to.
-        </EmptyStateBody><EmptyStateFooter>
-        <GoHomeBtn />
-      </EmptyStateFooter></EmptyState>
+        </EmptyStateBody>
+        <EmptyStateFooter>
+          <GoHomeBtn />
+        </EmptyStateFooter>
+      </EmptyState>
     </PageSection>
   )
 };

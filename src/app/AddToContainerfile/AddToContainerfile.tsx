@@ -1,28 +1,28 @@
 import * as React from 'react';
 import {
-    PageSection,
-    Title,
-    Text,
-    Radio,
+    Breadcrumb,
+    BreadcrumbItem,
     Button,
     Card,
     CardBody,
-    Stack,
-    Breadcrumb,
-    BreadcrumbItem,
     CodeBlock,
-    CodeBlockCode,
     CodeBlockAction,
-    FileUpload,
+    CodeBlockCode,
     EmptyState,
+    EmptyStateBody,
     EmptyStateIcon,
-    EmptyStateBody
+    FileUpload,
+    PageSection,
+    Radio,
+    Stack,
+    Text,
+    Title,
 } from '@patternfly/react-core';
 import {
+    CodeIcon,
     CopyIcon,
-    CodeIcon
 } from '@patternfly/react-icons';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface AddToContainerfileProps {
     selectedPackages?: Set<number>;
@@ -34,7 +34,8 @@ const AddToContainerfile: React.FunctionComponent<AddToContainerfileProps> = () 
     const [selectedOption, setSelectedOption] = React.useState('manage');
     const [value, setValue] = React.useState('');
     const [filename, setFilename] = React.useState('');
-    const [isLoading, setIsLoading] = React.useState(false);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [isLoading, _setIsLoading] = React.useState(false);
 
     // Get selected packages from location state or default
     const selectedPackages = location.state?.selectedPackages || new Set([2, 5]); // nginx, openssh as defaults

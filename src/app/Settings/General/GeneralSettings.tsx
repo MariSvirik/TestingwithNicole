@@ -5,7 +5,7 @@ import { useDocumentTitle } from '@app/utils/useDocumentTitle';
 const GeneralSettings: React.FunctionComponent = () => {
   useDocumentTitle("General Settings");
   return (
-    <PageSection hasBodyWrapper={false}>
+    <PageSection>
       <Title headingLevel="h1" size="lg">
         General Settings Page Title
       </Title>

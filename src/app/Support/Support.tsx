@@ -2,14 +2,15 @@ import * as React from 'react';
 import { CubesIcon } from '@patternfly/react-icons';
 import {
   Button,
-  Content,
-  ContentVariants,
   EmptyState,
   EmptyStateActions,
   EmptyStateBody,
   EmptyStateFooter,
+  EmptyStateIcon,
   EmptyStateVariant,
   PageSection,
+  Text,
+  Title,
 } from '@patternfly/react-core';
 
 export interface ISupportProps {
@@ -17,19 +18,21 @@ export interface ISupportProps {
 }
 
 let Support: React.FunctionComponent<ISupportProps> = () => (
-  <PageSection hasBodyWrapper={false}>
-    <EmptyState variant={EmptyStateVariant.full} titleText="Empty State (Stub Support Module)" icon={CubesIcon}>
+  <PageSection>
+    <EmptyState variant={EmptyStateVariant.full}>
+      <EmptyStateIcon icon={CubesIcon} />
+      <Title headingLevel="h4" size="lg">
+        Empty State (Stub Support Module)
+      </Title>
       <EmptyStateBody>
-        <Content>
-          <Content component="p">
-            This represents an the empty state pattern in Patternfly. Hopefully it&apos;s simple enough to use but
-            flexible enough to meet a variety of needs.
-          </Content>
-          <Content component={ContentVariants.small}>
-            This text has overridden a css component variable to demonstrate how to apply customizations using
-            PatternFly&apos;s CSS tokens.
-          </Content>
-        </Content>
+        <Text component="p">
+          This represents an the empty state pattern in Patternfly. Hopefully it&apos;s simple enough to use but
+          flexible enough to meet a variety of needs.
+        </Text>
+        <Text component="small">
+          This text has overridden a css component variable to demonstrate how to apply customizations using
+          PatternFly&apos;s CSS tokens.
+        </Text>
       </EmptyStateBody>
       <EmptyStateFooter>
         <Button variant="primary">Primary Action</Button>

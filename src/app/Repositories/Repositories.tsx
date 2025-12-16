@@ -1,50 +1,50 @@
 import * as React from 'react';
 import {
-    PageSection,
-    Title,
-    Text,
+    Button,
     Card,
     CardBody,
-    Tabs,
+    Checkbox,
+    Dropdown,
+    DropdownItem,
+    DropdownList,
+    EmptyState,
+    EmptyStateBody,
+    EmptyStateIcon,
+    InputGroup,
+    Label,
+    MenuToggle,
+    PageSection,
+    Select,
+    SelectList,
+    SelectOption,
+    Spinner,
     Tab,
-    TabTitleText,
     TabContent,
     TabContentBody,
-    Toolbar,
-    ToolbarContent,
-    ToolbarItem,
-    ToolbarGroup,
-    InputGroup,
+    TabTitleText,
+    Tabs,
+    Text,
     TextInput,
-    Button,
-    MenuToggle,
-    Select,
-    SelectOption,
-    SelectList,
-    Checkbox,
+    Title,
     ToggleGroup,
     ToggleGroupItem,
-    Label,
-    Spinner,
-    EmptyState,
-    EmptyStateIcon,
-    EmptyStateBody,
-    Dropdown,
-    DropdownList,
-    DropdownItem
+    Toolbar,
+    ToolbarContent,
+    ToolbarGroup,
+    ToolbarItem,
 } from '@patternfly/react-core';
 import {
     Table,
+    Tbody,
+    Td,
+    Th,
     Thead,
     Tr,
-    Th,
-    Tbody,
-    Td
 } from '@patternfly/react-table';
 import {
-    SearchIcon,
+    EllipsisVIcon,
     FilterIcon,
-    EllipsisVIcon
+    SearchIcon,
 } from '@patternfly/react-icons';
 
 // Mock data for demonstration
@@ -105,7 +105,7 @@ const Repositories: React.FunctionComponent = () => {
     const [selectedRepositories, setSelectedRepositories] = React.useState<Set<number>>(new Set());
     const [isActionsKebabOpen, setIsActionsKebabOpen] = React.useState(false);
     const [openRowKebabs, setOpenRowKebabs] = React.useState<Set<number>>(new Set());
-    const [isLoading, setIsLoading] = React.useState(false);
+    const [isLoading] = React.useState(false);
 
     const handleTabClick = (event: React.MouseEvent | React.KeyboardEvent | MouseEvent, tabIndex: string | number) => {
         setActiveTabKey(tabIndex as string);
@@ -124,7 +124,7 @@ const Repositories: React.FunctionComponent = () => {
         setSearchValue(value);
     };
 
-    const handleToggleGroupChange = (event: any, isSelected: boolean) => {
+    const handleToggleGroupChange = (event: any) => {
         const target = event.currentTarget as HTMLElement;
         const id = target.id;
         setSelectedFilter(id);

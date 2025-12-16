@@ -1,50 +1,50 @@
 import * as React from 'react';
 import {
-  PageSection,
-  Title,
-  Grid,
-  GridItem,
-  Card,
-  CardTitle,
-  CardBody,
-  Stack,
-  Button,
   ActionGroup,
-  Spinner,
-  EmptyState,
-  EmptyStateIcon,
-  EmptyStateBody,
-  Label,
-  Progress,
+  Button,
+  Card,
+  CardBody,
+  CardTitle,
   DescriptionList,
+  DescriptionListDescription,
   DescriptionListGroup,
   DescriptionListTerm,
-  DescriptionListDescription,
+  Divider,
+  EmptyState,
+  EmptyStateBody,
+  EmptyStateIcon,
+  Grid,
+  GridItem,
+  Label,
   List,
   ListItem,
+  PageSection,
+  Progress,
+  Spinner,
+  Stack,
   Text,
-  Divider
+  Title,
 } from '@patternfly/react-core';
 import {
   Table,
+  Tbody,
+  Td,
+  Th,
   Thead,
   Tr,
-  Th,
-  Tbody,
-  Td
 } from '@patternfly/react-table';
 import {
-  SearchIcon,
-  ArrowUpIcon,
   ArrowDownIcon,
-  ExternalLinkAltIcon,
-  UsersIcon,
-  DollarSignIcon,
+  ArrowUpIcon,
   ChartLineIcon,
-  PercentageIcon,
-  ServerIcon,
   DatabaseIcon,
-  ExclamationTriangleIcon
+  DollarSignIcon,
+  ExclamationTriangleIcon,
+  ExternalLinkAltIcon,
+  PercentageIcon,
+  SearchIcon,
+  ServerIcon,
+  UsersIcon,
 } from '@patternfly/react-icons';
 
 // Mock data for demonstration
@@ -71,7 +71,8 @@ const mockTableData = [
 ];
 
 const Dashboard: React.FunctionComponent = () => {
-  const [isLoading, setIsLoading] = React.useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isLoading, _setIsLoading] = React.useState(false);
 
   const getStatusLabel = (status: string) => {
     let color: 'green' | 'red' | 'orange' | 'blue' = 'blue';
