@@ -29,4 +29,10 @@ module.exports = {
 
   // The test environment that will be used for testing.
   testEnvironment: "jest-fixed-jsdom",
+
+  // Setup files to run before each test
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+
+  // Custom snapshot serializer to normalize non-deterministic IDs
+  snapshotSerializers: ['<rootDir>/jest.snapshot-serializer.js'],
 };
