@@ -782,11 +782,11 @@ const LocationTwoPanel: React.FunctionComponent<LocationPickerProps> = ({
 
     const moveChecked = (toChosen: boolean) => {
         if (toChosen) {
-            const idsToAdd = [
-                ...new Set(
+            const idsToAdd = Array.from(
+                new Set(
                     checkedAvailableIds.flatMap((id) => [id, ...getDescendantIds(locations, id)])
                 ),
-            ];
+            );
             onSelectedChange(withRequiredSelections(locations, [...selectedLocationIds, ...idsToAdd]));
             setCheckedIds((previousCheckedIds) =>
                 previousCheckedIds.filter((id) => !idsToAdd.includes(id))

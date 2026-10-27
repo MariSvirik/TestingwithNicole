@@ -334,7 +334,7 @@ export const EditParameters: React.FunctionComponent = () => {
             >
                 <Text component="p">
                     Edit parameters for{' '}
-                    <Text component="strong">{SELECTED_HOST_COUNT} selected hosts</Text>. All parameters assigned to
+                    <strong>{SELECTED_HOST_COUNT} selected hosts</strong>. All parameters assigned to
                     these hosts are listed below. Changes will apply only to hosts that currently have that parameter
                     assigned.
                 </Text>

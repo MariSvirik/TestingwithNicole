@@ -268,7 +268,7 @@ const PQCPage: React.FunctionComponent<PQCPageProps> = ({ title, documentTitle, 
                                         <FlexItem>
                                             <Button
                                                 variant="secondary"
-                                                isSmall
+                                                size="sm"
                                                 type="button"
                                                 onClick={handleGenerate}
                                                 isDisabled={!canGenerate}

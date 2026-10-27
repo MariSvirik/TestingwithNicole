@@ -105,10 +105,6 @@ const CreateHost: React.FunctionComponent = () => {
         }
     };
 
-    const onGoToStep = (step: number) => {
-        setCurrentStep(step);
-    };
-
     const handleSubmit = () => {
         console.log('Form submitted');
     };
@@ -128,7 +124,6 @@ const CreateHost: React.FunctionComponent = () => {
                             </span>
                         }
                         fieldId="name"
-                        helperText="Also used as the host's primary interface name"
                     >
                         <div style={{ display: 'flex', gap: 'var(--pf-global--spacer--xs)', alignItems: 'center' }}>
                             <TextInput
@@ -142,6 +137,7 @@ const CreateHost: React.FunctionComponent = () => {
                                 <span style={{ fontSize: '16px' }}>⇄</span>
                             </Button>
                         </div>
+                        <Text component="small">Also used as the host&apos;s primary interface name</Text>
                     </FormGroup>
                 </GridItem>
                 <GridItem span={12}>
@@ -259,7 +255,7 @@ const CreateHost: React.FunctionComponent = () => {
                                     <SelectOption value="vmware (VMware)">vmware (VMware)</SelectOption>
                                 </SelectList>
                             </Select>
-                            <Button variant="secondary" isSmall>inherit</Button>
+                            <Button variant="secondary" size="sm">inherit</Button>
                         </div>
                     </FormGroup>
                 </GridItem>
@@ -373,7 +369,7 @@ const CreateHost: React.FunctionComponent = () => {
                                     <SelectOption value="inherit">inherit</SelectOption>
                                 </SelectList>
                             </Select>
-                            <Button variant="secondary" isSmall>inherit</Button>
+                            <Button variant="secondary" size="sm">inherit</Button>
                         </div>
                     </FormGroup>
                 </GridItem>
@@ -407,7 +403,7 @@ const CreateHost: React.FunctionComponent = () => {
                                     <SelectOption value="inherit">inherit</SelectOption>
                                 </SelectList>
                             </Select>
-                            <Button variant="secondary" isSmall>inherit</Button>
+                            <Button variant="secondary" size="sm">inherit</Button>
                         </div>
                     </FormGroup>
                 </GridItem>
@@ -441,7 +437,7 @@ const CreateHost: React.FunctionComponent = () => {
                                     <SelectOption value="inherit">inherit</SelectOption>
                                 </SelectList>
                             </Select>
-                            <Button variant="secondary" isSmall>inherit</Button>
+                            <Button variant="secondary" size="sm">inherit</Button>
                         </div>
                     </FormGroup>
                 </GridItem>
@@ -475,7 +471,7 @@ const CreateHost: React.FunctionComponent = () => {
                                     <SelectOption value="inherit">inherit</SelectOption>
                                 </SelectList>
                             </Select>
-                            <Button variant="secondary" isSmall>inherit</Button>
+                            <Button variant="secondary" size="sm">inherit</Button>
                         </div>
                     </FormGroup>
                 </GridItem>
@@ -494,13 +490,13 @@ const CreateHost: React.FunctionComponent = () => {
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
                             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--pf-global--spacer--sm)' }}>
                                 <Text component="p">{i}. mock.ansible.role.{i}</Text>
-                                <Button variant="primary" isSmall>Add</Button>
+                                <Button variant="primary" size="sm">Add</Button>
                             </div>
                         ))}
                     </FormSection>
                 </GridItem>
                 <GridItem span={6}>
-                    <FormSection title="Assigned Ansible Roles" titleIcon={<OutlinedQuestionCircleIcon />}>
+                    <FormSection title="Assigned Ansible Roles">
                         <Text component="p" style={{ color: 'var(--pf-global--Color--200)' }}>
                             No roles assigned
                         </Text>
@@ -637,21 +633,21 @@ const CreateHost: React.FunctionComponent = () => {
                                         />
                                         <Button
                                             variant={allocationType === 'None' ? 'primary' : 'secondary'}
-                                            isSmall
+                                            size="sm"
                                             onClick={() => setAllocationType('None')}
                                         >
                                             None
                                         </Button>
                                         <Button
                                             variant={allocationType === 'Size' ? 'primary' : 'secondary'}
-                                            isSmall
+                                            size="sm"
                                             onClick={() => setAllocationType('Size')}
                                         >
                                             Size
                                         </Button>
                                         <Button
                                             variant={allocationType === 'Full' ? 'primary' : 'secondary'}
-                                            isSmall
+                                            size="sm"
                                             onClick={() => setAllocationType('Full')}
                                         >
                                             Full
@@ -1012,10 +1008,8 @@ const CreateHost: React.FunctionComponent = () => {
                 <StackItem style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
                     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
                         <Wizard
-                            startAtStep={currentStep + 1}
-                            onNext={onNext}
-                            onBack={onBack}
-                            onGoToStep={onGoToStep}
+                            key={currentStep}
+                            startIndex={currentStep + 1}
                             footer={
                                 <div style={{ 
                                     display: 'flex', 

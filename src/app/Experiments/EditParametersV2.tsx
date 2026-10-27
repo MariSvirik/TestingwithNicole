@@ -613,7 +613,7 @@ export const EditParametersV2: React.FunctionComponent = () => {
             >
                 <Text component="p">
                     Edit global parameters for{' '}
-                    <Text component="strong">{SELECTED_HOST_COUNT} selected hosts</Text>. All parameters are listed
+                    <strong>{SELECTED_HOST_COUNT} selected hosts</strong>. All parameters are listed
                     below. You can also add new and delete parameters for selected hosts.
                 </Text>
 

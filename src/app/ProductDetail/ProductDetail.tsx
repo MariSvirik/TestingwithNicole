@@ -150,8 +150,8 @@ const ProductDetail: React.FunctionComponent = () => {
 
     useDocumentTitle(`PatternFly Seed | ${productName || 'Product'}`);
 
-    const handleTabClick = (_event: React.MouseEvent, tabIndex: string) => {
-        setActiveTabKey(tabIndex);
+    const handleTabClick = (_event: React.MouseEvent, tabIndex: string | number) => {
+        setActiveTabKey(String(tabIndex));
     };
 
     // Filter repositories based on search
@@ -427,7 +427,6 @@ const ProductDetail: React.FunctionComponent = () => {
                                     value={task.progress}
                                     measureLocation="none"
                                     variant={task.progress >= 100 ? 'success' : undefined}
-                                    isStriped
                                     aria-label={`${task.event} ${task.progress}%`}
                                 />
                             </Td>
@@ -558,7 +557,7 @@ const ProductDetail: React.FunctionComponent = () => {
                                         <FlexItem>
                                             <TextArea
                                                 value={description}
-                                                onChange={(value) => setDescription(value)}
+                                                onChange={(_event, value) => setDescription(value)}
                                                 aria-label="Description"
                                                 rows={3}
                                             />

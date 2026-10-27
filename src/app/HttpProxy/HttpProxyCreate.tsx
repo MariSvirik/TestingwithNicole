@@ -52,7 +52,7 @@ export const HttpProxyCreate: React.FunctionComponent = () => {
     const [connectionTestStatus, setConnectionTestStatus] = React.useState<
         'idle' | 'loading' | 'success' | 'error'
     >('idle');
-    const testTimeoutRef = React.useRef<ReturnType<typeof setTimeout>>();
+    const testTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
     const URL_PREFIX = 'https://';
     const URL_TEST_DURATION_MS = 2000;

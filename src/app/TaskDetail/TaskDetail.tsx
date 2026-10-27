@@ -143,7 +143,7 @@ const TaskDetail: React.FunctionComponent = () => {
                 </StackItem>
                 <StackItem>
                     <Flex alignItems={{ default: 'alignItemsCenter' }} spaceItems={{ default: 'spaceItemsSm' }}>
-                        <Text component="span">{taskDetailMock.progress}%</Text>
+                        <span>{taskDetailMock.progress}%</span>
                         <FlexItem style={{ flex: 1 }}>
                             <Progress
                                 value={taskDetailMock.progress}
