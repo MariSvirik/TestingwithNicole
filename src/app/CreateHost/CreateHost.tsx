@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-    ActionGroup,
     Breadcrumb,
     BreadcrumbItem,
     Button,
@@ -24,9 +23,8 @@ import {
     TextInput,
     Title,
     Wizard,
-    WizardStep,
     WizardBody,
-    useWizardFooter,
+    WizardStep,
 } from '@patternfly/react-core';
 import {
     OutlinedQuestionCircleIcon,
@@ -506,6 +504,8 @@ const CreateHost: React.FunctionComponent = () => {
         </Form>
     );
 
+    // WIP: not wired into the wizard yet
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const renderVirtualMachineStep = () => (
         <Form>
             <Grid hasGutter>

@@ -46,18 +46,18 @@ import { CubesIcon, SearchIcon } from '@patternfly/react-icons';
 import { Table, Tbody, Td, Th, Thead, Tr } from '@patternfly/react-table';
 import {
   CONTAINER_DISCOVERY_RESULTS,
+  type DiscoveredRepository,
   EXISTING_PRODUCTS,
   GPG_KEYS,
+  type ProductMode,
   REGISTRIES,
+  type RepositoryType,
   YUM_DISCOVERY_RESULTS,
   isValidHttpUrl,
   toLabel,
   urlValidated,
-  type DiscoveredRepository,
-  type ProductMode,
-  type RepositoryType,
 } from './repoDiscoveryData';
-import { SimpleSelect, TruncatedUrl, nowrapHeader, ResettableTextInput, RowResetButton, AddingRepositoriesModal, useAddingRepositories, DiscoveredViewToggle, selectedCountLabel } from './RepoDiscoveryShared';
+import { AddingRepositoriesModal, DiscoveredViewToggle, ResettableTextInput, RowResetButton, SimpleSelect, TruncatedUrl, nowrapHeader, selectedCountLabel, useAddingRepositories } from './RepoDiscoveryShared';
 
 /**
  * PF5 tokens with pixel fallbacks — if every `var()` in the chain is invalid, the browser drops the

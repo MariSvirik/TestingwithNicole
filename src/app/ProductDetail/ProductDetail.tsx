@@ -52,7 +52,7 @@ import {
     PencilAltIcon,
     SyncIcon,
 } from '@patternfly/react-icons';
-import { useParams, useNavigate, useSearchParams, useLocation, Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useDocumentTitle } from '@app/utils/useDocumentTitle';
 
 // Mock data for product

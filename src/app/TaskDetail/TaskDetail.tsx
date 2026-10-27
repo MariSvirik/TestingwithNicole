@@ -31,7 +31,7 @@ import {
     ExclamationCircleIcon,
     RedoIcon,
 } from '@patternfly/react-icons';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const taskDetailMock = {
     taskName: 'Refresh Alternate Content Source refresh alternate content source',

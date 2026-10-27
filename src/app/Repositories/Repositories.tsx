@@ -46,8 +46,8 @@ import {
     CubesIcon,
     EllipsisVIcon,
     FilterIcon,
-    SearchIcon,
     OutlinedQuestionCircleIcon,
+    SearchIcon,
 } from '@patternfly/react-icons';
 import { useNavigate } from 'react-router-dom';
 
