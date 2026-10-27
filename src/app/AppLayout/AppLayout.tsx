@@ -17,6 +17,7 @@ import {
 } from '@patternfly/react-core';
 import { IAppRoute, IAppRouteGroup, routes } from '@app/routes';
 import { BarsIcon } from '@patternfly/react-icons';
+import { ExperimentsPasswordModal, useExperimentsAuth } from '@app/Experiments/experimentsAuth';
 
 interface IAppLayout {
   children: React.ReactNode;
@@ -24,6 +25,9 @@ interface IAppLayout {
 
 const AppLayout: React.FunctionComponent<IAppLayout> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = React.useState(true);
+  const { unlocked } = useExperimentsAuth();
+  const [experimentsExpanded, setExperimentsExpanded] = React.useState(false);
+  const [passwordModalOpen, setPasswordModalOpen] = React.useState(false);
   const masthead = (
     <Masthead>
       <MastheadMain>
@@ -85,6 +89,15 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({ children }) => {
 
   const location = useLocation();
 
+  React.useEffect(() => {
+    const experimentsGroup = routes.find(
+      (route): route is IAppRouteGroup => Boolean(route.routes) && route.label === 'Experiments',
+    );
+    if (unlocked && experimentsGroup?.routes.some((route) => route.path === location.pathname)) {
+      setExperimentsExpanded(true);
+    }
+  }, [unlocked, location.pathname]);
+
   const renderNavItem = (route: IAppRoute, index: number) => (
     <NavItem key={`${route.label}-${index}`} id={`${route.label}-${index}`} isActive={route.path === location.pathname}>
       <NavLink
@@ -95,16 +108,36 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({ children }) => {
     </NavItem>
   );
 
-  const renderNavGroup = (group: IAppRouteGroup, groupIndex: number) => (
-    <NavExpandable
-      key={`${group.label}-${groupIndex}`}
-      id={`${group.label}-${groupIndex}`}
-      title={group.label}
-      isActive={group.routes.some((route) => route.path === location.pathname)}
-    >
-      {group.routes.map((route, idx) => route.label && renderNavItem(route, idx))}
-    </NavExpandable>
-  );
+  const isExperimentsGroup = (group: IAppRouteGroup) => group.label === 'Experiments';
+
+  const renderNavGroup = (group: IAppRouteGroup, groupIndex: number) => {
+    const experimentsGroup = isExperimentsGroup(group);
+    const isActive = group.routes.some((route) => route.path === location.pathname);
+
+    return (
+      <NavExpandable
+        key={`${group.label}-${groupIndex}`}
+        id={`${group.label}-${groupIndex}`}
+        title={group.label}
+        isActive={isActive}
+        isExpanded={experimentsGroup ? experimentsExpanded && unlocked : undefined}
+        onExpand={
+          experimentsGroup
+            ? (_event, expanded) => {
+                if (expanded && !unlocked) {
+                  setPasswordModalOpen(true);
+                  return;
+                }
+                setExperimentsExpanded(expanded);
+              }
+            : undefined
+        }
+      >
+        {(!experimentsGroup || unlocked) &&
+          group.routes.map((route, idx) => route.label && renderNavItem(route, idx))}
+      </NavExpandable>
+    );
+  };
 
   const Navigation = (
     <Nav id="nav-primary-simple">
@@ -144,6 +177,11 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({ children }) => {
       skipToContent={PageSkipToContent}
     >
       {children}
+      <ExperimentsPasswordModal
+        isOpen={passwordModalOpen}
+        onClose={() => setPasswordModalOpen(false)}
+        onUnlocked={() => setExperimentsExpanded(true)}
+      />
     </Page>
   );
 };

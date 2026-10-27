@@ -46,6 +46,7 @@ import {
   ServerIcon,
   UsersIcon,
 } from '@patternfly/react-icons';
+import { useNavigate } from 'react-router-dom';
 
 // Mock data for demonstration
 const mockMetrics = {
@@ -73,11 +74,12 @@ const mockTableData = [
 const Dashboard: React.FunctionComponent = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, _setIsLoading] = React.useState(false);
+  const navigate = useNavigate();
 
   const getStatusLabel = (status: string) => {
     let color: 'green' | 'red' | 'orange' | 'blue' = 'blue';
-    if (status === 'Active' || status === 'success') color = 'green';
-    else if (status === 'Inactive' || status === 'danger') color = 'red';
+    if (status === 'Active' || status === 'success' || status === 'Valid') color = 'green';
+    else if (status === 'Inactive' || status === 'danger' || status === 'Invalid') color = 'red';
     else if (status === 'Pending' || status === 'info') color = 'blue';
 
     return <Label color={color}>{status}</Label>;

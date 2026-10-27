@@ -1,16 +1,28 @@
 import * as React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Dashboard } from '@app/Dashboard/Dashboard';
-import { Support } from '@app/Support/Support';
 import { Repositories } from '@app/Repositories/Repositories';
 import { PowerPuffGirl } from '@app/PowerPuffGirl/PowerPuffGirl';
 import { AddToContainerfile } from '@app/AddToContainerfile/AddToContainerfile';
 import { RecurringLogic } from '@app/RecurringLogic/RecurringLogic';
 import { ActivationKeys } from '@app/ActivationKeys/ActivationKeys';
 import { MirrorRepository } from '@app/MirrorRepository/MirrorRepository';
-import { GeneralSettings } from '@app/Settings/General/GeneralSettings';
-import { ProfileSettings } from '@app/Settings/Profile/ProfileSettings';
+import { HttpProxyCreate } from '@app/HttpProxy/HttpProxyCreate';
+import { ExperimentsLocations } from '@app/Experiments/ExperimentsLocations';
+import { EditParameters } from '@app/Experiments/EditParameters';
+import { EditParametersV2 } from '@app/Experiments/EditParametersV2';
+import { PQC, PQCV2 } from '@app/Experiments/PQC';
+import { ProductDetail } from '@app/ProductDetail/ProductDetail';
+import { CreateHost } from '@app/CreateHost/CreateHost';
+import { TaskDetail } from '@app/TaskDetail/TaskDetail';
+import { TemplateIndex } from '@app/TemplateIndex/TemplateIndex';
+import { TemplateDetail } from '@app/TemplateDetail/TemplateDetail';
+import { RepoDiscovery } from '@app/RepoDiscovery/RepoDiscovery';
+import { RepoDiscoveryV2 } from '@app/RepoDiscovery/RepoDiscoveryV2';
+import { RepoDiscoveryV3 } from '@app/RepoDiscovery/RepoDiscoveryV3';
+import { RepoDiscoveryV4 } from '@app/RepoDiscovery/RepoDiscoveryV4';
 import { NotFound } from '@app/NotFound/NotFound';
+import { withExperimentsAuth } from '@app/Experiments/experimentsAuth';
 
 export interface IAppRoute {
   label?: string; // Excluding the label will exclude the route from the nav sidebar in AppLayout
@@ -28,78 +40,160 @@ export interface IAppRouteGroup {
 
 export type AppRouteConfig = IAppRoute | IAppRouteGroup;
 
+// Products route has been removed - do not add it back
 const routes: AppRouteConfig[] = [
   {
-    element: <Dashboard />,
+    element: <RepoDiscoveryV4 />,
     exact: true,
-    label: 'Dashboard',
-    path: '/',
-    title: 'PatternFly Seed | Main Dashboard',
+    label: 'Repository discovery 4',
+    path: '/repositories/discover-v4',
+    title: 'PatternFly Seed | Repository discovery 4',
   },
   {
-    element: <Repositories />,
+    element: <ExperimentsLocations />,
     exact: true,
-    label: 'Repositories',
-    path: '/repositories',
-    title: 'PatternFly Seed | Repositories',
+    label: 'Locations',
+    path: '/experiments/locations',
+    title: 'PatternFly Seed | Locations',
   },
   {
-    element: <PowerPuffGirl />,
+    element: <TemplateIndex />,
     exact: true,
-    label: 'PowerPuffGirl3.0-Everythingnice.com',
-    path: '/powerpuffgirl',
-    title: 'PatternFly Seed | PowerPuffGirl3.0-Everythingnice.com',
+    label: 'Template',
+    path: '/template',
+    title: 'PatternFly Seed | Template',
   },
   {
-    element: <AddToContainerfile />,
+    element: <TemplateDetail />,
+    exact: true,
+    path: '/template/:templateId',
+    title: 'PatternFly Seed | Template detail',
+  },
+  {
+    element: withExperimentsAuth(<ProductDetail />),
+    exact: true,
+    path: '/products/:productName',
+    title: 'PatternFly Seed | Product Detail',
+  },
+  {
+    element: withExperimentsAuth(<TaskDetail />),
+    exact: true,
+    path: '/tasks/:taskId',
+    title: 'PatternFly Seed | Task Detail',
+  },
+  {
+    element: withExperimentsAuth(<AddToContainerfile />),
     exact: true,
     path: '/powerpuffgirl/add-to-containerfile',
     title: 'PatternFly Seed | Add transient packages to Containerfile',
   },
   {
-    element: <RecurringLogic />,
-    exact: true,
-    label: 'Recurring Logic',
-    path: '/recurring-logic',
-    title: 'PatternFly Seed | Recurring Logic',
-  },
-  {
-    element: <ActivationKeys />,
-    exact: true,
-    label: 'Activation Keys',
-    path: '/activation-keys',
-    title: 'PatternFly Seed | Activation Keys',
-  },
-  {
-    element: <MirrorRepository />,
-    exact: true,
-    label: 'Mirror Repository',
-    path: '/mirror-repository',
-    title: 'PatternFly Seed | Mirror Repository',
-  },
-  {
-    element: <Support />,
-    exact: true,
-    label: 'Support',
-    path: '/support',
-    title: 'PatternFly Seed | Support Page',
-  },
-  {
-    label: 'Settings',
+    label: 'Experiments',
     routes: [
       {
-        element: <GeneralSettings />,
+        element: withExperimentsAuth(<Dashboard />),
         exact: true,
-        label: 'General',
-        path: '/settings/general',
-        title: 'PatternFly Seed | General Settings',
+        label: 'Dashboard',
+        path: '/',
+        title: 'PatternFly Seed | Main Dashboard',
       },
       {
-        element: <ProfileSettings />,
+        element: withExperimentsAuth(<Repositories />),
         exact: true,
-        label: 'Profile',
-        path: '/settings/profile',
-        title: 'PatternFly Seed | Profile Settings',
+        label: 'Products',
+        path: '/repositories',
+        title: 'PatternFly Seed | Products',
+      },
+      {
+        element: withExperimentsAuth(<RepoDiscovery />),
+        exact: true,
+        label: 'Repository discovery',
+        path: '/repositories/discover',
+        title: 'PatternFly Seed | Repository discovery',
+      },
+      {
+        element: withExperimentsAuth(<RepoDiscoveryV2 />),
+        exact: true,
+        label: 'Repository discovery v2',
+        path: '/repositories/discover-v2',
+        title: 'PatternFly Seed | Repository discovery v2',
+      },
+      {
+        element: withExperimentsAuth(<RepoDiscoveryV3 />),
+        exact: true,
+        label: 'Repository discovery v3',
+        path: '/repositories/discover-v3',
+        title: 'PatternFly Seed | Repository discovery v3',
+      },
+      {
+        element: withExperimentsAuth(<PQC />),
+        exact: true,
+        label: 'PQC1',
+        path: '/experiments/pqc',
+        title: 'PatternFly Seed | PQC1',
+      },
+      {
+        element: withExperimentsAuth(<PQCV2 />),
+        exact: true,
+        label: 'PQC2',
+        path: '/experiments/pqc-v2',
+        title: 'PatternFly Seed | PQC2',
+      },
+      {
+        element: withExperimentsAuth(<CreateHost />),
+        exact: true,
+        label: 'Create Host',
+        path: '/hosts/create',
+        title: 'PatternFly Seed | Create Host',
+      },
+      {
+        element: withExperimentsAuth(<PowerPuffGirl />),
+        exact: true,
+        label: 'PowerPuffGirl3.0-Everythingnice.com',
+        path: '/powerpuffgirl',
+        title: 'PatternFly Seed | PowerPuffGirl3.0-Everythingnice.com',
+      },
+      {
+        element: withExperimentsAuth(<RecurringLogic />),
+        exact: true,
+        label: 'Recurring Logic',
+        path: '/recurring-logic',
+        title: 'PatternFly Seed | Recurring Logic',
+      },
+      {
+        element: withExperimentsAuth(<ActivationKeys />),
+        exact: true,
+        label: 'Activation Keys',
+        path: '/activation-keys',
+        title: 'PatternFly Seed | Activation Keys',
+      },
+      {
+        element: withExperimentsAuth(<MirrorRepository />),
+        exact: true,
+        label: 'Mirror Repository',
+        path: '/mirror-repository',
+        title: 'PatternFly Seed | Mirror Repository',
+      },
+      {
+        element: withExperimentsAuth(<HttpProxyCreate />),
+        exact: true,
+        label: 'HTTP Proxy',
+        path: '/http-proxy/create',
+        title: 'PatternFly Seed | Create HTTP Proxy',
+      },
+      {
+        element: withExperimentsAuth(<EditParameters />),
+        exact: true,
+        label: 'Edit parameters',
+        path: '/experiments/edit-parameters',
+        title: 'PatternFly Seed | Experiments | Edit parameters',
+      },
+      {
+        element: withExperimentsAuth(<EditParametersV2 />),
+        exact: true,
+        label: 'Edit parameters v2',
+        path: '/experiments/edit-parameters-v2',
+        title: 'PatternFly Seed | Experiments | Edit parameters v2',
       },
     ],
   },
