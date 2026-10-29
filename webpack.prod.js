@@ -10,9 +10,7 @@ import TerserJSPlugin from 'terser-webpack-plugin';
 export default merge(common('production'), {
   mode: 'production',
   devtool: 'source-map',
-  output: {
-    publicPath: '/TestingwithNicole/',
-  },
+  // publicPath comes from ASSET_PATH in webpack.common.js (set in package.json build script)
   optimization: {
     minimizer: [
       new TerserJSPlugin({}),

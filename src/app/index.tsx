@@ -6,8 +6,10 @@ import { AppRoutes } from '@app/routes';
 import { ExperimentsAuthProvider } from '@app/Experiments/experimentsAuth';
 import '@app/app.css';
 
+const routerBasename = process.env.ROUTER_BASENAME || '';
+
 const App: React.FunctionComponent = () => (
-  <Router>
+  <Router basename={routerBasename}>
     <ExperimentsAuthProvider>
       <AppLayout>
         <AppRoutes />

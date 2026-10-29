@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 import path from 'path';
+import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 const BG_IMAGES_DIRNAME = 'bgimages';
 const ASSET_PATH = process.env.ASSET_PATH || '/';
+const ROUTER_BASENAME = ASSET_PATH === '/' ? '' : ASSET_PATH.replace(/\/$/, '');
 
 export default (env) => {
   return {
@@ -105,6 +107,12 @@ export default (env) => {
     plugins: [
       new HtmlWebpackPlugin({
         template: path.resolve('./src', 'index.html'),
+        templateParameters: {
+          assetPath: ASSET_PATH,
+        },
+      }),
+      new webpack.DefinePlugin({
+        'process.env.ROUTER_BASENAME': JSON.stringify(ROUTER_BASENAME),
       }),
       new Dotenv({
         systemvars: true,
